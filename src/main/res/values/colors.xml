@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--ORIGINAL COLORS-->
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <!--<color name="colorAccent">#FF4081</color>-->
+
+    <color name="colorPrimaryDark">#333333</color>
+
+    <color name="colorPrimary">#FE5F00</color>
+    <color name="colorAccent">#F6AE2D</color>
+    <color name="colorAmbientLight">#33658A</color>
+    <color name="colorAmbient">#1d2d38</color>
+    <color name="colorAmbientDark">#253946</color>
+
+
+    <!--COLOR SCHEME ONE-->
+    <color name="lightBlue">#33658A</color>
+    <color name="blue">#86BBD8</color>
+    <color name="darkBlue">#2F4858</color>
+    <color name="yellow">#F6AE2D</color>
+    <color name="orange">#FE5F00</color>
+
+</resources>

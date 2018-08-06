@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.traviswhipple.seniorproject.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/searchBarLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <SearchView
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/selectedImage"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="visible" />
+
+
+    <LinearLayout
+        android:layout_below="@id/selectedImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorAmbient"
+            android:baselineAligned="false">
+
+
+            <LinearLayout
+                android:id="@+id/similarImagesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Similar Images"
+                            android:textColor="@android:color/white"
+                            android:background="@color/colorPrimary"
+                            android:textAlignment="center"
+                            android:textSize="30sp"/>
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorAccent"
+                            android:text="Add Tag"
+                            android:textSize="30sp"
+                            android:layout_gravity="center"
+                            android:onClick="addTag"/>
+
+                    </LinearLayout>
+
+                    <GridView
+                        android:id="@+id/similarImagesGridView"
+                        android:background="@color/colorAmbientDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:columnWidth="90dp"
+                        android:numColumns="auto_fit"
+                        android:verticalSpacing="10dp"
+                        android:horizontalSpacing="10dp"
+                        android:stretchMode="columnWidth"
+                        android:gravity="center"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:id="@+id/tagLayout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            </LinearLayout>
+
+                        </ScrollView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <GridView
+                android:layout_weight="1"
+                android:id="@+id/gridView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnWidth="90dp"
+                android:numColumns="auto_fit"
+                android:verticalSpacing="10dp"
+                android:horizontalSpacing="10dp"
+                android:stretchMode="columnWidth"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>
