@@ -47,7 +47,7 @@ dependencies {
 
 
     // TensorFlow components.
-    compile 'org.tensorflow:tensorflow-android:+'
+    //compile 'org.tensorflow:tensorflow-android:+'
 
     // Google cloud vision component. - Used for image classification.
     // Up to 1000 request per month, and 5gb of cloud storage.

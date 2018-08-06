@@ -186,7 +186,7 @@ public class MainActivity extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_copy);
+        setContentView(R.layout.activity_main_copy_orig);
 
         //images = new Vector<>();
 
@@ -339,11 +339,14 @@ public class MainActivity extends Activity{
 
     public void clicked(int position){
 
-        String imagePath = myImageAdapter.getItem(position);
+        //String imagePath = myImageAdapter.getItem(position);
+        String imagePath = imageManager.getImagePathFromPosition(position);
+        //tagViews(imageManager.getImageObject(imagePath));
 
         //setViewLayout(R.layout.similar_images_activity);
 
         similarImagesView.setSimilarImages(imagePath, position);
+
     }
 
     public void tagViews(ImageObject imageObject){
@@ -485,6 +488,7 @@ public class MainActivity extends Activity{
                         //similarImageAdapter.add(io.getImageID());
 
                         tagViews(imageObject);
+                        similarImagesView.tagView(imageObject);
 
                         saveToFile();
                     }

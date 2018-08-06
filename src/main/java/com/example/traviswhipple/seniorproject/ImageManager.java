@@ -130,14 +130,18 @@ public class ImageManager {
         }
     }
 
-    public ImageObject getImageObject(String image){
-        ImageObject io = new ImageObject(image);
+    public ImageObject getImageObject(String imagePath){
+        ImageObject io = new ImageObject(imagePath);
         int index = images.indexOf(io);
 
         if(index == -1){
-            return new ImageObject(image);
+            return new ImageObject(imagePath);
         }
         return images.get(index);
+    }
+
+    public String getImagePathFromPosition(int position){
+        return images.get(position).getPath();
     }
 
     public Tag getTagObject(String tag){

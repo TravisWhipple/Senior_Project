@@ -29,7 +29,7 @@ public class SimilarImages extends AppCompatActivity {
     ImageAdapter mSimilarImageAdapter;
     ImageManager mImageManager;
     LinearLayout mTagsLayout;
-    Context context;
+    Context mContext;
 
 
     public SimilarImages(Context appContext, ImageManager imageManager, ImageAdapter imageAdapter, ImageView imageView, LinearLayout tagsLayout){
@@ -37,14 +37,14 @@ public class SimilarImages extends AppCompatActivity {
         mSimilarImageAdapter = imageAdapter;
         mImageView = imageView;
         mTagsLayout = tagsLayout;
-        context = appContext;
+        mContext = appContext;
     }
 
 
     public void setSimilarImages(String imagePath, int position){
 
         // Load selected image into selectedImageView.
-        Glide.with(context)
+        Glide.with(mContext)
                 .load(imagePath)
                 .into(mImageView);
 
@@ -62,6 +62,41 @@ public class SimilarImages extends AppCompatActivity {
         for(ImageObject imageObject : mImageManager.getSimilarImages(io)){
             mSimilarImageAdapter.add(imageObject.getPath());
         }
+
+        tagView(mImageManager.getImageObject(imagePath));
+    }
+
+    public void tagView(ImageObject imageObject){
+        mTagsLayout.removeAllViews();
+
+        //TODO testing tags
+        TextView tempText = new TextView(mContext);
+        tempText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        //tempText.setTextColor(getResources().getColor(R.color.colorAccent, null));
+        tempText.setTextSize(25);
+
+        String tag = "";
+        Log.e("NumTags:", Integer.toString(imageObject.getNumTags()));
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+
+        Long num = imageObject.getDate();
+        calendar.setTimeInMillis(num);
+        Date dateObject = calendar.getTime();
+        String dateTaken = dateObject.toString();
+
+        String dateAdded = dateFormat.format(calendar.getTime());
+
+        String date = "DATE: " + dateAdded;
+        tag += date + '\n';
+
+        for(Tag tags : imageObject.getTags()){
+            tag += tags.getTagName() + '\n';
+        }
+        tempText.setText(tag);
+
+        // Add view to front so most recent move is at the top of move description.
+        mTagsLayout.addView(tempText, 0);
     }
 
     public void tagViews(ImageObject imageObject){
@@ -69,9 +104,9 @@ public class SimilarImages extends AppCompatActivity {
         mTagsLayout.removeAllViews();
 
         //TODO testing tags
-        TextView tempText = new TextView(getApplicationContext());
+        TextView tempText = new TextView(mContext);
         tempText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tempText.setTextColor(getResources().getColor(R.color.colorAccent, null));
+        //tempText.setTextColor(getResources().getColor(R.color.colorAccent, null));
         tempText.setTextSize(25);
 
         String tag = "";
@@ -84,7 +119,7 @@ public class SimilarImages extends AppCompatActivity {
         Log.e("NumTags:", Integer.toString(imageObject.getNumTags()));
 
 
-        Cursor mImageCursor = getContentResolver()
+        Cursor mImageCursor = mContext.getContentResolver()
                 .query(
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                         null,
