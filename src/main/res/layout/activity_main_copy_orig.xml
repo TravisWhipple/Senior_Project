@@ -53,16 +53,16 @@
 
 
             <ImageView
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:id="@+id/selectedImage"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="match_parent"
                 android:visibility="visible" />
 
             <LinearLayout
-                android:layout_weight="3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
 
@@ -79,17 +79,27 @@
                         android:textColor="@android:color/white"
                         android:background="@color/colorPrimary"
                         android:textAlignment="center"
-                        android:textSize="30sp"/>
+                        android:textSize="20sp"/>
 
                     <Button
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:background="@color/colorAccent"
                         android:text="Add Tag"
-                        android:textSize="30sp"
+                        android:textSize="20sp"
                         android:layout_gravity="center"
                         android:onClick="addTag"/>
+
+                    <Button
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorAmbientLight"
+                        android:text="Analize"
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:onClick="analyzePhoto"/>
 
                 </LinearLayout>
 

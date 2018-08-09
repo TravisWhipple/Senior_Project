@@ -30,6 +30,7 @@ public class SimilarImages extends AppCompatActivity {
     ImageManager mImageManager;
     LinearLayout mTagsLayout;
     Context mContext;
+    private final double CONFIDENCE_LIMIT = .90;
 
 
     public SimilarImages(Context appContext, ImageManager imageManager, ImageAdapter imageAdapter, ImageView imageView, LinearLayout tagsLayout){
@@ -63,10 +64,11 @@ public class SimilarImages extends AppCompatActivity {
             mSimilarImageAdapter.add(imageObject.getPath());
         }
 
-        tagView(mImageManager.getImageObject(imagePath));
+
+        setTagViewImage(mImageManager.getImageObject(imagePath));
     }
 
-    public void tagView(ImageObject imageObject){
+    public void setTagViewImage(ImageObject imageObject){
         mTagsLayout.removeAllViews();
 
         //TODO testing tags
@@ -76,7 +78,6 @@ public class SimilarImages extends AppCompatActivity {
         tempText.setTextSize(25);
 
         String tag = "";
-        Log.e("NumTags:", Integer.toString(imageObject.getNumTags()));
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 
@@ -87,11 +88,11 @@ public class SimilarImages extends AppCompatActivity {
 
         String dateAdded = dateFormat.format(calendar.getTime());
 
-        String date = "DATE: " + dateAdded;
+        String date = dateAdded;
         tag += date + '\n';
 
         for(Tag tags : imageObject.getTags()){
-            tag += tags.getTagName() + '\n';
+            tag += tags.getTagName() + tags.getImageConfidence(imageObject) + '\n';
         }
         tempText.setText(tag);
 

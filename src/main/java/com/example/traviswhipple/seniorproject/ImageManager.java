@@ -83,25 +83,29 @@ public class ImageManager {
         return allPaths;
     }
 
-    public void addTag(ImageObject imageObject, Tag tagObject){
+    public void addTagRelation(ImageObject imageObject, Tag tagObject){
+        addTagRelation(imageObject, tagObject, 1);
+    }
+
+    public void addTagRelation(ImageObject imageObject, Tag tagObject, double confidence){
 
         if(!images.contains(imageObject)){
-            Log.e("addTag", "does not contain image +" + imageObject.toString());
+            Log.e("IM.addTagRelation", "does not contain image: " + imageObject.toString());
             images.add(imageObject);
         }
 
         if(tags.contains(tagObject)){
-            Log.e("addTag", "ALREADY CONTAINS TAG +" + tagObject.toString());
+            Log.e("IM.addTagRelation", "ALREADY CONTAINS TAG: " + tagObject.toString());
             tagObject = getTagObject(tagObject.getTagName());
 
-            tagObject.addImage(imageObject, 1);
+            tagObject.addImage(imageObject, confidence);
             imageObject.addTag(tagObject);
 
         }else{
             //Add the new tag.
-            Log.e("addTag", "Adding tag" + tagObject.toString());
+            Log.e("IM.addTagRelation", "Adding tag: " + tagObject.toString());
 
-            tagObject.addImage(imageObject, 1);
+            tagObject.addImage(imageObject, confidence);
             imageObject.addTag(tagObject);
 
             tags.add(tagObject);
@@ -146,7 +150,6 @@ public class ImageManager {
 
     public Tag getTagObject(String tag){
 
-
         Tag tagObject = new Tag(tag);
         int index = tags.indexOf(tagObject);
 
@@ -171,13 +174,29 @@ public class ImageManager {
 
 
     public ArrayList<ImageObject> getSimilarImages(ImageObject image){
+
+        double confidenceLimit = .90;
         ArrayList<ImageObject> similarImages = new ArrayList<>();
 
-        for(Tag tag : image.getTags()){
-            similarImages.addAll(tag.getImageList());
+
+        for(Tag tag : image.getTags()) {
+
+            if (tag.getImageConfidence(image) >= confidenceLimit) {
+                //similarImages.addAll(tag.getImageList());
+                for (ImageObject io : tag.getImageList()) {
+                    if (tag.getImageConfidence(io) >= confidenceLimit) {
+
+                        if(!similarImages.contains(io)){
+                            similarImages.add(io);
+                        }
+                    }
+                }
+            }
         }
 
-        similarImages.remove(image);
+        while(similarImages.contains(image)){
+            similarImages.remove(image);
+        }
 
         return similarImages;
     }

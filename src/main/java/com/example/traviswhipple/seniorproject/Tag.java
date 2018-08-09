@@ -89,7 +89,11 @@ public class Tag {
 
     public double getImageConfidence(ImageObject image){
         int index = imageList.indexOf(image);
-        return confidence.get(index);
+        if(index >= 0){
+            return confidence.get(index);
+        }else{
+            return 0;
+        }
     }
 
     @Override

@@ -65,22 +65,31 @@ public class ImageLoader {
             return false;
         }
 
+        // Split data on each row.
         String data[] = rawData.split("\n");
 
         for(String row : data){
-            String[] imageData = row.split("[,()]");
+            // Remove any spaces after "," in file.
+            row = row.replaceAll(",\\s", ",");
 
+            // Split the row by each tag entry, separated by ","
+            String[] tagEntry = row.split("[,]");
 
-            ImageObject imageObject = new ImageObject(imageData[0]);
+            ImageObject imageObject = new ImageObject(tagEntry[0]);
             mImageManager.addImage(imageObject);
 
             // Start at 1 to skip over path name.
-            for(int i = 1; i < imageData.length; i = i){
-                String tagName = imageData[i++];
-                Double confidence = Double.parseDouble(imageData[i++]);
+            for(int i = 1; i < tagEntry.length; i++){
 
-                Tag tag = new Tag(tagName, imageObject, confidence);
-                mImageManager.addTag(imageObject, tag);
+                // Split tag entry data into tag's name and associated confidence.
+                String[] tagSplitData = tagEntry[i].split("[()]", 0);
+
+                String tagName = tagSplitData[0];
+                double confidence = Double.parseDouble(tagSplitData[1]);
+
+                // Create a new Tag object and add relationship to associated image.
+                Tag tag = new Tag(tagName);
+                mImageManager.addTagRelation(imageObject, tag, confidence);
             }
         }
 
