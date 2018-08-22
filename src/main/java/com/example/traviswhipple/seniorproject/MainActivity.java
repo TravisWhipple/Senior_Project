@@ -470,9 +470,6 @@ public class MainActivity extends Activity{
 
 
     //TODO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    //TODO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    //TODO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    //TODO * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
     private static final String CLOUD_VISION_API_KEY = "AIzaSyB53Zn1hsdqcrzRopzrVWXow82QSCr5m1c";
 

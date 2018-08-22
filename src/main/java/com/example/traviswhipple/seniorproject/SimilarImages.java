@@ -74,7 +74,7 @@ public class SimilarImages extends AppCompatActivity {
         //TODO testing tags
         TextView tempText = new TextView(mContext);
         tempText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        //tempText.setTextColor(getResources().getColor(R.color.colorAccent, null));
+        tempText.setTextColor(mContext.getResources().getColor(R.color.colorAccent, null));
         tempText.setTextSize(25);
 
         String tag = "";

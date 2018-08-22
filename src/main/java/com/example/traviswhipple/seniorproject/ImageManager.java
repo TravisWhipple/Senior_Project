@@ -173,17 +173,44 @@ public class ImageManager {
     }
 
 
+
     public ArrayList<ImageObject> getSimilarImages(ImageObject image){
 
-        double confidenceLimit = .90;
+        double confidenceLimit = .97d;
+        final double LOWER_LIMIT = .60d;
+        final double FACTOR = .40d;
+
         ArrayList<ImageObject> similarImages = new ArrayList<>();
+
+
+        // Trying to set confidence limit by using the lowest confidence on the top 40% results.
+        ArrayList<Tag> tags = image.getTags();
+
+        // Get top 40% of tags.
+        int index = (int) Math.ceil(tags.size() * FACTOR);
+
+        // Index of base 0 array.
+        index -= 1;
+
+        double outerConfidenceLimit = .0;
+        for(int i = index; i >= 0; i--){
+            double lowestOfTop40 = tags.get(i).getImageConfidence(image);
+
+            if(lowestOfTop40 > LOWER_LIMIT){
+                outerConfidenceLimit = lowestOfTop40;
+                break;
+            }
+        }
+
 
 
         for(Tag tag : image.getTags()) {
 
-            if (tag.getImageConfidence(image) >= confidenceLimit) {
+            if (tag.getImageConfidence(image) >= outerConfidenceLimit) {
+
                 //similarImages.addAll(tag.getImageList());
                 for (ImageObject io : tag.getImageList()) {
+
                     if (tag.getImageConfidence(io) >= confidenceLimit) {
 
                         if(!similarImages.contains(io)){
