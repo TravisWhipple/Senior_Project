@@ -23,7 +23,6 @@
                 android:background="@color/white">
             </FrameLayout>
 
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -35,7 +34,6 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"/>
 
-
                 <LinearLayout
                     android:id="@+id/actionButtonsLayout"
                     android:layout_width="match_parent"
@@ -43,7 +41,6 @@
                     android:orientation="horizontal"
                     android:visibility="invisible"
                     android:gravity="start">
-
 
                     <ImageButton
                         android:id="@+id/similarImagesRemoveFragment"
@@ -58,8 +55,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:gravity="end">
-
-
 
                         <ImageButton
                             android:id="@+id/analyzeButton"

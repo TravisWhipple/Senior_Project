@@ -8,10 +8,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by traviswhipple on 3/12/18.
- */
-
 
 /**/
 /*

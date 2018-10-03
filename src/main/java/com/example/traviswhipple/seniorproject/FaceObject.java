@@ -9,11 +9,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Created by traviswhipple on 9/19/18.
- */
-
-
 /**/
 /*
 CLASS NAME

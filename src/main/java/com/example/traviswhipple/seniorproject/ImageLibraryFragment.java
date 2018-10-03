@@ -18,9 +18,6 @@ import com.bumptech.glide.signature.StringSignature;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-/**
- * Created by traviswhipple on 9/20/18.
- */
 
 /**/
 /*

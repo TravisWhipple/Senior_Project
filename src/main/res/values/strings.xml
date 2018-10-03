@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">SeniorProject</string>
-
     <string name="project_directory">SeniorProject</string>
     <string name="serializer_file">ImageDataFile.txt</string>
-
     <string name="faces_directory">Faces</string>
-
     <string name="imagePrefix">IMG_</string>
 
 </resources>

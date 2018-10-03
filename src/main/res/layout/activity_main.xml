@@ -8,7 +8,6 @@
     android:orientation="vertical"
     tools:context="com.example.traviswhipple.seniorproject.MainActivity">
 
-
     <LinearLayout
         android:id="@+id/searchBarLayout"
         android:layout_width="match_parent"
@@ -124,6 +123,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

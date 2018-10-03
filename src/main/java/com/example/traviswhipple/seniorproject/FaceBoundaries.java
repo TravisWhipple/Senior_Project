@@ -1,13 +1,8 @@
 package com.example.traviswhipple.seniorproject;
 
 import android.graphics.Bitmap;
-
 import com.google.android.gms.vision.face.Face;
 
-
-/**
- * Created by traviswhipple on 9/19/18.
- */
 
 /**/
 /*

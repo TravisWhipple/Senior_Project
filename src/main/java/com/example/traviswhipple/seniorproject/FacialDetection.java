@@ -10,9 +10,6 @@ import com.google.android.gms.vision.face.Face;
 
 import java.util.ArrayList;
 
-/**
- * Created by traviswhipple on 9/19/18.
- */
 
 /**/
 /*

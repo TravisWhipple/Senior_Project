@@ -6,12 +6,6 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.util.Log;
 
-import java.io.IOException;
-
-/**
- * Created by traviswhipple on 9/23/18.
- */
-
 /**/
 /*
 CLASS NAME

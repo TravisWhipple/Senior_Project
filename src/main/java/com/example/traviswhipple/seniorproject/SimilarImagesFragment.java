@@ -16,37 +16,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.StringSignature;
-
-//import com.google.api.services.vision.v1.model.AnnotateImageRequest;
-//import com.google.api.services.vision.v1.model.AnnotateImageResponse;
-//import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
-//import com.google.api.services.vision.v1.model.EntityAnnotation;
-//import com.google.api.services.vision.v1.model.Feature;
-//import com.google.api.services.vision.v1.model.Image;
-
-//import com.google.cloud.vision.v1.ImageAnnotatorClient;
-//import com.google.protobuf.ByteString;
-//import com.google.protobuf.Descriptors;
-
-//import java.io.File;
-//import java.io.FileInputStream;
-//import java.io.FileNotFoundException;
-//import java.io.IOException;
 import java.lang.ref.WeakReference;
-//import java.lang.reflect.Type;
-//import java.nio.file.Files;
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.function.BiConsumer;
-//
-//import static java.lang.System.out;
-
-/**
- * Created by traviswhipple on 9/16/18.
- */
 
 /**/
 /*

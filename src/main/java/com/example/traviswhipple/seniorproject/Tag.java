@@ -3,10 +3,6 @@ package com.example.traviswhipple.seniorproject;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-/**
- * Created by traviswhipple on 7/20/18.
- */
-
 /**/
 /*
 
