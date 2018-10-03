@@ -732,9 +732,14 @@ public class PersonFragment extends Fragment {
                     // Check that face does not already belong to a person.
                     for(Person p : m_imageManager.GetPeople()){
                         for(FaceObject f : p.GetFaces()){
+
                             if(f.GetId() == selectedFace.GetId()){
-                                // Face already belongs to a person, do nothing.
-                                return;
+
+                                // If this face does not belong to the current person, then
+                                // the face can not be added or removed.
+                                if(p != m_Person){
+                                    return;
+                                }
                             }
                         }
                     }
