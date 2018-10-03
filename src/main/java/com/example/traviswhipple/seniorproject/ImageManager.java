@@ -1441,7 +1441,8 @@ public class ImageManager {
 
         if(imageObjectToBeAnalyzed != null){
             if(imageObjectToBeAnalyzed.GetHasDetectedFaces()){
-                Toast.makeText(m_Context, "Faces have already been found!", Toast.LENGTH_LONG).show();
+                Toast.makeText(m_Context, "Faces have already been found!",
+                        Toast.LENGTH_LONG).show();
                 return;
             }
 

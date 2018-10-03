@@ -215,32 +215,38 @@ public class ImageLibraryFragment extends Fragment {
 
         // Create Gallery album.
         m_GALLERY_ALBUM = m_nextAlbumID;
-        LinearLayout cover = GetAlbumCover("Image Gallery", m_ImageManager.GetImagePathFromPosition(0), viewSize);
+        LinearLayout cover = GetAlbumCover("Image Gallery",
+                m_ImageManager.GetImagePathFromPosition(0), viewSize);
         m_mainGridLayout.addView(cover);
 
         // Create Dates album.
         m_DATES_ALBUM = m_nextAlbumID;
-        cover = GetAlbumCover("Photos By Date", m_ImageManager.GetImagePathFromPosition(0), viewSize);
+        cover = GetAlbumCover("Photos By Date",
+                m_ImageManager.GetImagePathFromPosition(0), viewSize);
         m_mainGridLayout.addView(cover);
 
         // Create Faces album.
         if(m_ImageManager.GetAllFaces().size() != 0){
             m_FACES_ALBUM = m_nextAlbumID;
-            cover = GetAlbumCover("Faces", m_ImageManager.GetAllFaces().get(0).GetImagePath(), viewSize);
+            cover = GetAlbumCover("Faces",
+                    m_ImageManager.GetAllFaces().get(0).GetImagePath(), viewSize);
             m_mainGridLayout.addView(cover);
         }
 
         // Create similar tags album
         if(m_ImageManager.GetTags().size() != 0){
             m_TAGS_ALBUM = m_nextAlbumID;
-            cover = GetAlbumCover("Photos by Tags", m_ImageManager.GetTopTags(1).get(0).GetImageList().get(0).GetPath(), viewSize);
+            cover = GetAlbumCover("Photos by Tags",
+                    m_ImageManager.GetTopTags(1).get(0).GetImageList().get(0).GetPath(),
+                    viewSize);
             m_mainGridLayout.addView(cover);
         }
 
         // Create people album.
-        if(m_ImageManager.GetPeople().size() != 0){
+        if(m_ImageManager.GetAllFaces().size() != 0){
             m_PEOPLE_ALBUM = m_nextAlbumID;
-            cover = GetAlbumCover("People", m_ImageManager.GetPeople().get(0).GetAllImagePathsContainingPerson().get(0), viewSize);
+            cover = GetAlbumCover("People",
+                    m_ImageManager.GetAllFaces().get(0).GetFacePath(), viewSize);
             m_mainGridLayout.addView(cover);
         }
     }
@@ -345,7 +351,8 @@ public class ImageLibraryFragment extends Fragment {
                                       int a_maxViewSize){
 
         // Inflate a TextView from text view template.
-        TextView textView = (TextView) LayoutInflater.from(m_Context).inflate(R.layout.text_view_template, null);
+        TextView textView = (TextView) LayoutInflater.from(m_Context)
+                .inflate(R.layout.text_view_template, null);
         textView.setText(a_albumName);
 
         // ImageView displays cover photo
@@ -534,7 +541,8 @@ public class ImageLibraryFragment extends Fragment {
             its cache.
             */
             int fiveMinuteInMillisecods = 5 * 60 * 1000;
-            StringSignature strSig = new StringSignature(String.valueOf(System.currentTimeMillis()/fiveMinuteInMillisecods));
+            StringSignature strSig = new StringSignature(String.valueOf(
+                    System.currentTimeMillis()/fiveMinuteInMillisecods));
             Glide.with(this)
                     .load(imagePath)
                     .signature(strSig)
@@ -596,7 +604,8 @@ public class ImageLibraryFragment extends Fragment {
 
             // Capitalize tag name.
             String tagName = tag.GetTagName();
-            String capitalizedTagName = tagName.substring(0, 1).toUpperCase() + tagName.substring(1);
+            String capitalizedTagName = tagName.substring(0, 1).toUpperCase()
+                    + tagName.substring(1);
 
             // Create TextView to display the current tags name.
             TextView tagTextView = CreateTextView(
@@ -619,11 +628,12 @@ public class ImageLibraryFragment extends Fragment {
 
                     /*
                     Load current image into ImageView using Glide for optimal performance.
-                    This will clear glides cache every 5 minutes to prevent from loading an old image from
-                    its cache.
+                    This will clear glides cache every 5 minutes to prevent from loading an
+                    old image from its cache.
                     */
                     int fiveMinuteInMillisecods = 5 * 60 * 1000;
-                    StringSignature strSig = new StringSignature(String.valueOf(System.currentTimeMillis()/fiveMinuteInMillisecods));
+                    StringSignature strSig = new StringSignature(String.valueOf(
+                            System.currentTimeMillis()/fiveMinuteInMillisecods));
                     Glide.with(this)
                             .load(image.GetPath())
                             .signature(strSig)

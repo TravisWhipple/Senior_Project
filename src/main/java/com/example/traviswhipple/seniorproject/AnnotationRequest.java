@@ -148,10 +148,12 @@ public class AnnotationRequest {
                         // Call super to initializeVisionRequest as normal.
                         super.initializeVisionRequest(visionRequest);
 
-                        visionRequest.getRequestHeaders().set("X-Android-Package", m_Context.getPackageName());
+                        visionRequest.getRequestHeaders().set("X-Android-Package",
+                                m_Context.getPackageName());
 
                         // Gets signature for this app.
-                        String signature = PackageManagerUtils.getSignature(m_Context.getPackageManager(),
+                        String signature = PackageManagerUtils.getSignature(
+                                m_Context.getPackageManager(),
                                 m_Context.getPackageName());
 
                         // Set signature of app.
@@ -160,7 +162,8 @@ public class AnnotationRequest {
                 };
 
         // Create authenticated JSON request to be used when calling API.
-        Vision.Builder builder = new Vision.Builder(httpTransport, jsonFactory, null);
+        Vision.Builder builder = new Vision.Builder(httpTransport, jsonFactory,
+                null);
         builder.setVisionRequestInitializer(requestInitializer);
         Vision visionAnnotationRequest = builder.build();
 

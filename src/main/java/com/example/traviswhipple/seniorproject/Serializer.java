@@ -115,7 +115,8 @@ public class Serializer {
         /* Create a public directory on external XD card. This is so that we can view and edit
         the file easier as the data is public.
         */
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + projectDirectory;
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath()
+                + "/" + projectDirectory;
         File dir = new File(path);
 
         /* Create directory if it does not exist.
@@ -137,11 +138,11 @@ public class Serializer {
 
     DESCRIPTION
         This function will load all images into the data set. The data set is the ImageManager
-        class. Files will be loaded from: images saved under the projects private Directory "Pictures"; images
-        saved in public libraries, including the "DCIM" (where photos are stored when taken
-        from the devices camera application) and "Pictures" folders. This function will load
-        each row from a file and depending on what type of data that row contains, the proper
-        parse function will be called.
+        class. Files will be loaded from: images saved under the projects private Directory
+        "Pictures". images saved in public libraries, including the "DCIM" (where photos are
+        stored when taken from the devices camera application) and "Pictures" folders. This
+        function will load each row from a file and depending on what type of data that row
+        contains, the proper parse function will be called.
 
     RETURNS
         boolean     - True if load successful
@@ -217,10 +218,62 @@ public class Serializer {
         }
 
         // Log tat files were successfully loaded.
-        Log.i("Serializer.Load()", "Finished loading file " + m_SAVE_FILE.getAbsolutePath());
+        Log.i("Serializer.Load()", "Finished loading file "
+                + m_SAVE_FILE.getAbsolutePath());
         return true;
     }
     /* boolean Load() */
+
+    /**/
+    /*
+    LoadImagesFromPublicDirectories
+
+    NAME
+        LoadImagesFromPublicDirectories()  - Loads images from public directories.
+
+    DESCRIPTION
+        This function will load images from the public directories. The public directories
+        include the following directories: Pictures, Downloads and DCIM.
+
+    AUTHOR
+        Travis Whipple
+
+    */
+    /**/
+    private void LoadImagesFromPublicDirectories(){
+
+        Cursor imageCursor = m_Context.getContentResolver()
+                .query(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        null,
+                        null,
+                        null,
+                        MediaStore.Images.Media.DEFAULT_SORT_ORDER);
+        imageCursor.moveToFirst();
+
+        while(!imageCursor.isAfterLast()){
+
+            String path = imageCursor.getString(imageCursor.getColumnIndex(
+                    MediaStore.Images.Media.DATA));
+            String dateStr = imageCursor.getString(imageCursor.getColumnIndex(
+                    MediaStore.Images.Media.DATE_TAKEN));
+
+            Long dateTaken = null;
+
+            try{
+                dateTaken = Long.parseLong(dateStr);
+            }catch (Exception e){
+                Log.e("Failed to parse date", e.getMessage());
+            }
+
+            AddImageToDataSet(path, dateTaken);
+            imageCursor.moveToNext();
+        }
+
+        // Free cursor.
+        imageCursor.close();
+    }
+    /* void LoadImagesFromPublicDirectories() */
 
     /**/
     /*
@@ -267,7 +320,8 @@ public class Serializer {
                 ExifInterface exifInterface = new ExifInterface(currentFilePath);
                 String rawDate = exifInterface.getAttribute(ExifInterface.TAG_DATETIME);
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss", Locale.US);
+                SimpleDateFormat dateFormat = new SimpleDateFormat(
+                        "yyyy:MM:dd HH:mm:ss", Locale.US);
 
                 if(rawDate != null){
                     Log.e("Loaded", currentFilePath);
@@ -292,140 +346,6 @@ public class Serializer {
         }
     }
     /* void LoadImagesFromPrivateDirectory() */
-
-    /**/
-    /*
-    LoadImagesFromPublicDirectories
-
-    NAME
-        LoadImagesFromPublicDirectories()  - Loads images from public directories.
-
-    DESCRIPTION
-        This function will load images from the public directories. The public directories
-        include the following directories: Pictures, Downloads and DCIM.
-
-    RETURNS
-
-    AUTHOR
-        Travis Whipple
-
-    */
-    /**/
-    private void LoadImagesFromPublicDirectories(){
-
-        Cursor mImageCursor = m_Context.getContentResolver()
-                .query(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                        null,
-                        null,
-                        null,
-                        MediaStore.Images.Media.DEFAULT_SORT_ORDER);
-        mImageCursor.moveToFirst();
-
-        while(!mImageCursor.isAfterLast()){
-
-            String path = mImageCursor.getString(mImageCursor.getColumnIndex(MediaStore.Images.Media.DATA));
-            String dateStr = mImageCursor.getString(mImageCursor.getColumnIndex(MediaStore.Images.Media.DATE_TAKEN));
-
-            Long dateTaken = null;
-
-            try{
-                dateTaken = Long.parseLong(dateStr);
-            }catch (Exception e){
-                Log.e("Failed to parse date", e.getMessage());
-            }
-
-            AddImageToDataSet(path, dateTaken);
-            mImageCursor.moveToNext();
-        }
-
-        // Free cursor.
-        mImageCursor.close();
-    }
-    /* void LoadImagesFromPublicDirectories() */
-
-    /**/
-    /*
-    GetRawData
-
-    NAME
-        GetRawData()    - Gets all data in file as a String object.
-
-    DESCRIPTION
-        This function will read all bytes of the save file and return the bytes as a String
-        object. This function will search for the save file under the created SeniorProject
-        Directory. If the file does not exist under the SeniorProject directory the this function
-        will check the Downloads directory for the save file. If no file is found then a blank
-        String will be returned.
-
-    RETURNS
-        String      - Containing every character in file. Or,
-                    - Empty string if file was not found. This function will never return null.
-
-    AUTHOR
-        Travis Whipple
-
-    */
-    /**/
-    private String GetRawData(){
-
-        // Will return empty string if file could not be loaded.
-        String rawData = "";
-        FileInputStream inputStream = null;
-
-        // If file does not exist, check Downloads directory.
-        if(!m_SAVE_FILE.exists()){
-
-            // Find save file under Downloads folder.
-            File downloadsDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            File[] filesInDir = downloadsDirectory.listFiles();
-
-            // Loop through files in the Downloads directory.
-            for(File file : filesInDir){
-
-                if(file.getName().equals(m_FILE_NAME)){
-                    m_SAVE_FILE = file;
-                    break;
-                }
-            }
-        }
-
-        // No file was still not found, return empty string.
-        if(!m_SAVE_FILE.exists()){
-            Log.w("Serializer.GetRawData", "No save file found");
-            return rawData;
-        }
-
-        // Log where the file was found.
-        Log.i("Serializer.GetRawData", "Save file found: " + m_SAVE_FILE.getAbsolutePath());
-
-        // Read in bytes.
-        try {
-            // Get input stream from file.
-            inputStream = new FileInputStream(m_SAVE_FILE);
-
-            // Set up buffer.
-            int size = inputStream.available();
-            byte[] buffer = new byte[size];
-
-            // Read into buffer
-            inputStream.read(buffer);
-            inputStream.close();
-
-            // Save contents of buffer.
-            rawData = new String(buffer);
-            Log.e("LOAD", "Success");
-        }
-
-        catch(Exception e) {
-            e.printStackTrace();
-            Log.e("Serializer.GetRawData", "IOException: " + e.getMessage());
-        }
-
-        // Return raw data.
-        return rawData;
-    }
-    /* String GetRawData() */
 
     /**/
     /*
@@ -469,6 +389,91 @@ public class Serializer {
 
     }
     /* void AddImageToDataSet(String a_path, Long a_dateTaken) */
+
+    /**/
+    /*
+    GetRawData
+
+    NAME
+        GetRawData()    - Gets all data in file as a String object.
+
+    DESCRIPTION
+        This function will read all bytes of the save file and return the bytes as a String
+        object. This function will search for the save file under the created SeniorProject
+        Directory. If the file does not exist under the SeniorProject directory the this function
+        will check the Downloads directory for the save file. If no file is found then a blank
+        String will be returned.
+
+    RETURNS
+        String      - Containing every character in file. Or,
+                    - Empty string if file was not found. This function will never return null.
+
+    AUTHOR
+        Travis Whipple
+
+    */
+    /**/
+    private String GetRawData(){
+
+        // Will return empty string if file could not be loaded.
+        String rawData = "";
+        FileInputStream inputStream = null;
+
+        // If file does not exist, check Downloads directory.
+        if(!m_SAVE_FILE.exists()){
+
+            // Find save file under Downloads folder.
+            File downloadsDirectory = Environment.getExternalStoragePublicDirectory(
+                    Environment.DIRECTORY_DOWNLOADS);
+            File[] filesInDir = downloadsDirectory.listFiles();
+
+            // Loop through files in the Downloads directory.
+            for(File file : filesInDir){
+
+                if(file.getName().equals(m_FILE_NAME)){
+                    m_SAVE_FILE = file;
+                    break;
+                }
+            }
+        }
+
+        // No file was still not found, return empty string.
+        if(!m_SAVE_FILE.exists()){
+            Log.w("Serializer.GetRawData", "No save file found");
+            return rawData;
+        }
+
+        // Log where the file was found.
+        Log.i("Serializer.GetRawData", "Save file found: "
+                + m_SAVE_FILE.getAbsolutePath());
+
+        // Read in bytes.
+        try {
+            // Get input stream from file.
+            inputStream = new FileInputStream(m_SAVE_FILE);
+
+            // Set up buffer.
+            int size = inputStream.available();
+            byte[] buffer = new byte[size];
+
+            // Read into buffer
+            inputStream.read(buffer);
+            inputStream.close();
+
+            // Save contents of buffer.
+            rawData = new String(buffer);
+            Log.e("LOAD", "Success");
+        }
+
+        catch(Exception e) {
+            e.printStackTrace();
+            Log.e("Serializer.GetRawData", "IOException: " + e.getMessage());
+        }
+
+        // Return raw data.
+        return rawData;
+    }
+    /* String GetRawData() */
 
     /**/
     /*
@@ -682,7 +687,7 @@ public class Serializer {
         This function will save all data to a save file. This function is responsible for writing
         3 main aspects to the save file; Images and their tags, Faces and their boundaries, People
         and the faces they contain. Each of these 3 aspects will be prefaced in the save file to
-        make parsing andorganizationn easier.
+        make parsing and organization easier.
 
     AUTHOR
         Travis Whipple
@@ -735,7 +740,8 @@ public class Serializer {
             outputStream = new FileOutputStream(m_SAVE_FILE);
             outputStream.write(data.toString().getBytes());
             outputStream.close();
-            Log.i("Serializer.SaveToFile", "Saved under: " + m_SAVE_FILE.getAbsolutePath());
+            Log.i("Serializer.SaveToFile", "Saved under: "
+                    + m_SAVE_FILE.getAbsolutePath());
         }
         catch(Exception e) {
             Log.e("Serialize.SaveToFile", "Cannot write to file: " + e.toString());

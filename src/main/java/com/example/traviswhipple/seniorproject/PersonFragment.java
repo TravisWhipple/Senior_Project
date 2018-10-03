@@ -384,10 +384,12 @@ public class PersonFragment extends Fragment {
                     "Select all faces to remove.",
                     Toast.LENGTH_LONG).show();
 
-            DrawableCompat.setTint(drawable, ContextCompat.getColor(m_context, R.color.accentNegative));
+            DrawableCompat.setTint(drawable,
+                    ContextCompat.getColor(m_context, R.color.accentNegative));
         }else{
 
-            DrawableCompat.setTint(drawable, ContextCompat.getColor(m_context, R.color.accent));
+            DrawableCompat.setTint(drawable,
+                    ContextCompat.getColor(m_context, R.color.accent));
         }
     }
     /* void RemovingPerson(boolean a_isRemoving) */
@@ -535,10 +537,12 @@ public class PersonFragment extends Fragment {
         // Set color of button.
         if(a_person == m_Person){
             //button.setBackgroundColor(ContextCompat.getColor(m_context, R.color.colorSubmit));
-            DrawableCompat.setTint(drawable, ContextCompat.getColor(m_context, R.color.colorSubmit));
+            DrawableCompat.setTint(drawable,
+                    ContextCompat.getColor(m_context, R.color.colorSubmit));
         }else{
             //button.setBackgroundColor(ContextCompat.getColor(m_context, R.color.colorPrimary));
-            DrawableCompat.setTint(drawable, ContextCompat.getColor(m_context, R.color.primary));
+            DrawableCompat.setTint(drawable,
+                    ContextCompat.getColor(m_context, R.color.primary));
         }
 
         // Add button to layout.
@@ -690,7 +694,8 @@ public class PersonFragment extends Fragment {
         if(m_isSelectingFaces){
             // Set background color if image selected.
             if(m_Person.GetFaces().contains(a_face)){
-                imageView.setBackgroundColor(ContextCompat.getColor(m_context, R.color.colorSubmit));
+                imageView.setBackgroundColor(
+                        ContextCompat.getColor(m_context, R.color.colorSubmit));
             }
         }
 
@@ -724,14 +729,24 @@ public class PersonFragment extends Fragment {
 
         if(m_isSelectingFaces){
             // Find face with given ID.
-            for(FaceObject face : m_imageManager.GetAllFaces()){
-                if(face.GetId() == a_imageId){
+            for(FaceObject selectedFace : m_imageManager.GetAllFaces()){
+                if(selectedFace.GetId() == a_imageId){
+
+                    // Check that face does not already belong to a person.
+                    for(Person p : m_imageManager.GetPeople()){
+                        for(FaceObject f : p.GetFaces()){
+                            if(f.GetId() == selectedFace.GetId()){
+                                // Face already belongs to a person, do nothing.
+                                return;
+                            }
+                        }
+                    }
 
                     // Add or remove face from person.
-                    if(m_Person.GetFaces().contains(face)){
-                        m_Person.RemoveFace(face);
+                    if(m_Person.GetFaces().contains(selectedFace)){
+                        m_Person.RemoveFace(selectedFace);
                     }else{
-                        m_Person.AddFace(face);
+                        m_Person.AddFace(selectedFace);
                     }
 
                     // Display changes.

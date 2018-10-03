@@ -97,7 +97,8 @@ public class SimilarImagesFragment extends Fragment {
         SetArguments()      - Sets arguments for Fragment.
 
     SYNOPSIS
-        void SetArguments(MainActivity a_activity, ImageManager a_imageManager, Context a_context, int a_position)
+        void SetArguments(MainActivity a_activity, ImageManager a_imageManager,
+                            Context a_context, int a_position)
             a_activity          --> Parent Activity who created this Fragment.
             a_imageManager      --> Data set.
             a_context           --> Context of parent Activity
@@ -111,7 +112,8 @@ public class SimilarImagesFragment extends Fragment {
 
     */
     /**/
-    public void SetArguments(MainActivity a_activity, ImageManager a_imageManager, Context a_context, int a_position){
+    public void SetArguments(MainActivity a_activity, ImageManager a_imageManager,
+                             Context a_context, int a_position){
 
         // Save passed data to member variables.
         m_MainActivity = new WeakReference<>(a_activity);
@@ -120,7 +122,8 @@ public class SimilarImagesFragment extends Fragment {
         m_SelectedImagePosition = a_position;
         m_fragmentCreated = false;
     }
-    /* void SetArguments(MainActivity a_activity, ImageManager a_imageManager, Context a_context, int a_position) */
+    /* void SetArguments(MainActivity a_activity, ImageManager a_imageManager,
+                            Context a_context, int a_position) */
 
     /**/
     /*
@@ -140,12 +143,14 @@ public class SimilarImagesFragment extends Fragment {
     */
     /**/
     @Override
-    public View onCreateView(LayoutInflater a_inflater, ViewGroup a_parent, Bundle a_savedInstanceState) {
+    public View onCreateView(LayoutInflater a_inflater, ViewGroup a_parent,
+                             Bundle a_savedInstanceState) {
 
         // Inflate layout to use similar images layout XML file.
         return a_inflater.inflate(R.layout.similar_images_layout, a_parent, false);
     }
-    /* View onCreateView(LayoutInflater a_inflater, ViewGroup a_parent, Bundle a_savedInstanceState) */
+    /* View onCreateView(LayoutInflater a_inflater, ViewGroup a_parent,
+                Bundle a_savedInstanceState) */
 
     /**/
     /*
@@ -285,7 +290,8 @@ public class SimilarImagesFragment extends Fragment {
         numSimilarImages = m_ImageManager.GetSameDayPhotos(selectedImagePath).size();
         if(numSimilarImages > 0){
             // Add photos from this day to layout.
-            String text = "Photos from " + m_ImageManager.GetImageObject(selectedImagePath).GetDateString();
+            String text = "Photos from " + m_ImageManager.GetImageObject(
+                    selectedImagePath).GetDateString();
             m_mainGridLayout.addView(CreateTextView(text));
 
             for(ImageObject image : m_ImageManager.GetSameDayPhotos(selectedImagePath)){
@@ -420,7 +426,8 @@ public class SimilarImagesFragment extends Fragment {
 
         // Create new fragment and set its arguments.
         m_TagFragment = new TagFragment();
-        m_TagFragment.SetArguments(m_MainActivity.get(), m_ImageManager, m_Context, m_SelectedImagePosition);
+        m_TagFragment.SetArguments(m_MainActivity.get(), m_ImageManager,
+                m_Context, m_SelectedImagePosition);
 
         // Commit the fragment to display it.
         transaction.replace(R.id.tagFragment, m_TagFragment);
@@ -511,7 +518,8 @@ public class SimilarImagesFragment extends Fragment {
 
         // TextView will span one row and every column.
         GridLayout.Spec rowSpan = GridLayout.spec(GridLayout.UNDEFINED, 1);
-        GridLayout.Spec colspan = GridLayout.spec(GridLayout.UNDEFINED, m_mainGridLayout.getColumnCount());
+        GridLayout.Spec colspan = GridLayout.spec(
+                GridLayout.UNDEFINED, m_mainGridLayout.getColumnCount());
 
         GridLayout.LayoutParams layoutParams =  new GridLayout.LayoutParams(rowSpan, colspan);
 
@@ -576,7 +584,8 @@ public class SimilarImagesFragment extends Fragment {
         its cache.
         */
         int fiveMinuteInMillisecods = 5 * 60 * 1000;
-        StringSignature strSig = new StringSignature(String.valueOf(System.currentTimeMillis()/fiveMinuteInMillisecods));
+        StringSignature strSig = new StringSignature(
+                String.valueOf(System.currentTimeMillis()/fiveMinuteInMillisecods));
         Glide.with(m_Context)
                 .load(a_image.GetPath())
                 .signature(strSig)

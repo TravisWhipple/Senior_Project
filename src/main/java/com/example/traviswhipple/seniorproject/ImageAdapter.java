@@ -217,7 +217,8 @@ public class ImageAdapter extends BaseAdapter {
         its cache.
         */
         int fiveMinuteInMillisecods = 5 * 60 * 1000;
-        StringSignature strSig = new StringSignature(String.valueOf(System.currentTimeMillis()/fiveMinuteInMillisecods));
+        StringSignature strSig = new StringSignature(String.valueOf(
+                System.currentTimeMillis()/fiveMinuteInMillisecods));
         Glide.with(m_Context)
                 .load(m_pathList.get(a_position))
                 .signature(strSig)

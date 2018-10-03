@@ -270,21 +270,17 @@ public class FaceObject {
     /**/
     private void SaveFaceToDirectory(){
 
-
-        // Create directories to store faces in.
-//        String projectDirName = m_context.getResources().getString(R.string.project_directory);
-//        File projectDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + projectDirName);
-//        boolean ret = projectDir.mkdirs();
-
         // Get directory to store faces in.
-        File facesDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + m_DIRECTORY);
+        File facesDirectory = new File(Environment.getExternalStorageDirectory()
+                .getAbsolutePath() + "/" + m_DIRECTORY);
         boolean ret = facesDirectory.mkdirs();
 
         // File name is simply just the ID.
         String fileName = Integer.toString(m_ID);
 
         // Create file for image.
-        File file = new File(facesDirectory.getAbsolutePath() + "/" + fileName + ".jpeg");
+        File file = new File(facesDirectory.getAbsolutePath()
+                + "/" + fileName + ".jpeg");
 
         try{
 
@@ -300,7 +296,8 @@ public class FaceObject {
             m_FacePath = file.getAbsolutePath();
 
         }catch(IOException e){
-            Log.e("FaceObject.SaveFaceToDirectory", "Error creating file: " + e.getMessage());
+            Log.e("FaceObject.SaveFaceToDirectory",
+                    "Error creating file: " + e.getMessage());
         }
     }
     /* SaveFaceToDirectory() */

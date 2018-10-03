@@ -79,8 +79,10 @@ public class FacialDetection {
         // Set m_detector to allow it to detect as much information as possible.
         m_detector = new com.google.android.gms.vision.face.FaceDetector.Builder(m_Context)
                 .setTrackingEnabled(false)
-                .setLandmarkType(com.google.android.gms.vision.face.FaceDetector.ALL_LANDMARKS)
-                .setClassificationType(com.google.android.gms.vision.face.FaceDetector.ACCURATE_MODE)
+                .setLandmarkType(com.google.android.gms.vision.face
+                        .FaceDetector.ALL_LANDMARKS)
+                .setClassificationType(com.google.android.gms.vision.face
+                        .FaceDetector.ACCURATE_MODE)
                 .build();
     }
     /* FacialDetection(Context a_context) */
@@ -139,7 +141,8 @@ public class FacialDetection {
         }
 
         // Log how many faces were found in image.
-        Log.i("FacialDetection", "Found " + Integer.toString(faces.size()) + " faces in image: " + a_imagePath);
+        Log.i("FacialDetection", "Found " + Integer.toString(faces.size())
+                + " faces in image: " + a_imagePath);
         return detectedFaceObjects;
     }
     /* DetectFaces(String a_imagePath) */

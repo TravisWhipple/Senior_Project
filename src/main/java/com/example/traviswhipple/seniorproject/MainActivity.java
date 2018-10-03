@@ -300,38 +300,49 @@ public class MainActivity extends AppCompatActivity{
             case MY_PERMISSIONS_READ_EXTERNAL_DATA:
 
                 // If request is cancelled, the result arrays are empty.
-                if (a_grantResults.length > 0 && a_grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (a_grantResults.length > 0
+                        && a_grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // Permission was granted.
                     LoadPhotosInitializer();
                     AnalyzePhotos();
 
-                    HasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, MY_PERMISSIONS_WRITE_EXTERNAL_DATA);
+                    HasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            MY_PERMISSIONS_WRITE_EXTERNAL_DATA);
 
                 } else {
                     // Permission denied. Inform user what will happen now.
-                    Toast.makeText(this, "Cannot Load any images! Must have permission", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,
+                            "Cannot Load any images! Must have permission",
+                            Toast.LENGTH_LONG).show();
                 }
                 break;
 
             case MY_PERMISSIONS_WRITE_EXTERNAL_DATA:
-                if (a_grantResults.length > 0 && a_grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission was granted.
+                if (a_grantResults.length > 0
+                        && a_grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
+                    // Permission was granted.
                     HasPermission(Manifest.permission.CAMERA, MY_PERMISSIONS_CAMERA);
                 } else {
                     // Permission denied. Inform user what will happen now.
-                    Toast.makeText(this, "Cannot Load any images! Must have permission", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,
+                            "Cannot Load any images! Must have permission",
+                            Toast.LENGTH_LONG).show();
                 }
                 break;
 
             case MY_PERMISSIONS_CAMERA:
 
-                if(a_grantResults.length > 0 && a_grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if(a_grantResults.length > 0
+                        && a_grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
                     // Camera permission granted.
                     ShowCameraButton();
                 }else{
                     // Permission denied. Inform user what will happen now.
-                    Toast.makeText(this, "Cannot take any new photos! Must have permission", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,
+                            "Cannot take any new photos! Must have permission",
+                            Toast.LENGTH_LONG).show();
                 }
         }
     }
@@ -357,7 +368,8 @@ public class MainActivity extends AppCompatActivity{
     */
     /**/
     private void LoadPhotosInitializer(){
-        if(HasPermission(Manifest.permission.READ_EXTERNAL_STORAGE, MY_PERMISSIONS_READ_EXTERNAL_DATA)){
+        if(HasPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
+                MY_PERMISSIONS_READ_EXTERNAL_DATA)){
 
             // Permission is granted to read from external storage.
             m_imageManager = new ImageManager(this.getApplicationContext());
@@ -404,7 +416,8 @@ public class MainActivity extends AppCompatActivity{
 
             // Check if this permission should have a message associated with it.
             if(shouldShowRequestPermissionRationale(a_PERMISSION)){
-                Toast.makeText(this, "Permission needed to access camera", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Permission needed to access camera",
+                        Toast.LENGTH_LONG).show();
             }
 
             // Request the permission that was not granted.
@@ -528,7 +541,8 @@ public class MainActivity extends AppCompatActivity{
             tempFile = new File(directory, fileName);
 
             // Get Uri for this file.
-            Uri photoUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", tempFile);
+            Uri photoUri = FileProvider.getUriForFile(this,
+                    getApplicationContext().getPackageName() + ".provider", tempFile);
 
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
             startActivityForResult(cameraIntent, CAMERA_REQUEST);
@@ -566,7 +580,8 @@ public class MainActivity extends AppCompatActivity{
         if (a_requestCode == CAMERA_REQUEST && a_resultCode == Activity.RESULT_OK) {
 
             // Get uri of where photo was saved.
-            Uri photoUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", tempFile);
+            Uri photoUri = FileProvider.getUriForFile(this,
+                    getApplicationContext().getPackageName() + ".provider", tempFile);
             String imagePath = photoUri.getPath();
 
             // Save the image to the applications private Images folder.
@@ -1193,6 +1208,9 @@ public class MainActivity extends AppCompatActivity{
 
                 // Execute the thread.
                 thread.start();
+
+                // Analyze this image for faces.
+                m_imageManager.AnalyzeForFaces(imagePath);
             }
         }
     }
@@ -1240,12 +1258,9 @@ public class MainActivity extends AppCompatActivity{
                     Log.i("Analyzing image", image.GetPath());
                     AnalyzeImage(image.GetPath());
                 }
-
-                if(!image.GetHasDetectedFaces()){
-                    Log.i("Detecting faces for Image", image.GetPath());
-                    m_imageManager.AnalyzeForFaces(image.GetPath());
-                }
             }
+
+            m_imageManager.AnalyzeForFaces();
         }
     }
     /* class AnalyzePhotoThread extends Thread */
@@ -1298,7 +1313,8 @@ public class MainActivity extends AppCompatActivity{
 
     // Calls AnalyzeImages with the image not having been analyzed before.
     public void AnalyzeImage(String a_imagePath){
-        AnalyzeImage(a_imagePath, false);
+        AnalyzeImage(a_imagePath,
+                false);
     }
 
     /**/
@@ -1445,7 +1461,8 @@ public class MainActivity extends AppCompatActivity{
                 Log.i("onPostExecute", a_result);
 
                 if(a_result.equals("ERROR")){
-                    Log.e("MainActivity.LabelDetectionTask.onPostExecute", "Result is ERROR");
+                    Log.e("MainActivity.LabelDetectionTask.onPostExecute",
+                            "Result is ERROR");
 
                     // Analyze photo again if this is its first time failing.
                     if(!m_hasTriedAnalyzing){
@@ -1528,7 +1545,8 @@ public class MainActivity extends AppCompatActivity{
                 /* Parse JSON response into format "confidence:label"
                 with confidence only having 3 points of precision.
                  */
-                    stringResponse.append(String.format(Locale.US, "%.3f", label.getScore()));
+                    stringResponse.append(String.format(Locale.US, "%.3f",
+                            label.getScore()));
                     stringResponse.append(":");
                     stringResponse.append(label.getDescription());
                     stringResponse.append("\n");

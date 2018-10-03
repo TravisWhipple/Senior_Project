@@ -68,9 +68,6 @@ public class BitmapResource {
     /**/
     public Bitmap GetBitmapFromPath(String a_imagePath){
 
-
-        String path = a_imagePath;
-
         // Get bitmap from image path.
         Bitmap bitmap = BitmapFactory.decodeFile(a_imagePath);
 
@@ -117,8 +114,10 @@ public class BitmapResource {
                     matrix,
                     true);
 
-        }catch(IOException e){
-            Log.e("BitmapResource.GetBitmapFromPath", "IOException: " + e.getMessage());
+        }catch(Exception e){
+            Log.e("BitmapResource.GetBitmapFromPath", "Image: "
+                    + a_imagePath + "IOException: " + e.getMessage());
+
         }
 
         return bitmap;

@@ -69,12 +69,14 @@ public class TagFragment extends Fragment {
     */
     /**/
     @Override
-    public View onCreateView(LayoutInflater a_inflater, ViewGroup a_parent, Bundle a_savedInstanceState) {
+    public View onCreateView(LayoutInflater a_inflater, ViewGroup a_parent,
+                             Bundle a_savedInstanceState) {
 
         // Inflate layout to use tag fragment layout XML file.
         return a_inflater.inflate(R.layout.tag_fragment_layout, a_parent, false);
     }
-    /* View onCreateView(LayoutInflater a_inflater, ViewGroup a_parent, Bundle a_savedInstanceState) */
+    /* View onCreateView(LayoutInflater a_inflater, ViewGroup a_parent,
+                            Bundle a_savedInstanceState) */
 
     /**/
     /*
@@ -131,11 +133,13 @@ public class TagFragment extends Fragment {
                 // Set color of button back.
                 if(m_isRemovingTags){
                     m_isRemovingTags = false;
-                    DrawableCompat.setTint(drawable, ContextCompat.getColor(m_Context, R.color.accent));
+                    DrawableCompat.setTint(drawable, ContextCompat.getColor(
+                            m_Context, R.color.accent));
 
                 }else{
                     m_isRemovingTags = true;
-                    DrawableCompat.setTint(drawable, ContextCompat.getColor(m_Context, R.color.accentNegative));
+                    DrawableCompat.setTint(drawable, ContextCompat.getColor(
+                            m_Context, R.color.accentNegative));
                 }
 
                 UpdateTags();
