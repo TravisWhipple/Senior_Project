@@ -1,9 +1,5 @@
 package com.example.traviswhipple.seniorproject;
 
-/**
- * Created by traviswhipple on 8/6/18.
- */
-
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
