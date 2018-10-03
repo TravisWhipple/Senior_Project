@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/darkBlue">
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    style="@style/RoundButton"
+                    android:visibility="invisible" />
+
+                <TextView
+                    style="@style/settingsTextStyle"
+                    android:text="Turn on dark mode:" />
+
+                <Switch
+                    android:id="@+id/darkModeSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="100dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    style="@style/RoundButton"
+                    android:visibility="invisible" />
+
+                <TextView
+                    style="@style/settingsTextStyle"
+                    android:text="Analyze Photos In Background:" />
+
+                <Switch
+                    android:id="@+id/autoAnalyze"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="100dp"
+                    android:textOff="Off"
+                    android:textOn="On" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    style="@style/RoundButton"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/primary"
+                    android:src="@drawable/add_image" />
+
+
+                <TextView
+                    style="@style/settingsTextStyle"
+                    android:text="The ADD button is used to create new elements for an image. Simply click the ADD button, then a dialog will appear where you can enter in the elements name." />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    style="@style/RoundButton"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/primary"
+                    android:src="@drawable/remove_image" />
+
+                <TextView
+                    style="@style/settingsTextStyle"
+                    android:text="The REMOVE button is used to remove existing tags for an image. Simply click the REMOVE button, then when elements are highlighted in red, click each element you would like to remove, then finally re-click the REMOVE button when finished." />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    style="@style/RoundButton"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/primary"
+                    android:src="@drawable/compute_image" />
+
+                <TextView
+                    style="@style/settingsTextStyle"
+                    android:text="The ANALYZE button when pressed will analyze the current photo, it will classify the image with tags and find faces within the image. An alert will show up if image has already been analyzed" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    style="@style/RoundButton"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/primary"
+                    android:src="@drawable/folders_image" />
+
+                <TextView
+                    style="@style/settingsTextStyle"
+                    android:text="The ALBUM selector button lets the user select between different albums generated by the progra. Give it a try!" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    style="@style/RoundButton"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/accentNegative"
+                    android:src="@drawable/exit_image" />
+
+                <TextView
+                    style="@style/settingsTextStyle"
+                    android:text="The EXIT button will remove the current image from the view and bring the user back to the album they were viewing." />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    style="@style/RoundButton"
+                    android:layout_gravity="end"
+                    android:backgroundTint="@color/primary"
+                    android:src="@drawable/settings_image" />
+
+                <TextView
+                    style="@style/settingsTextStyle"
+                    android:text="The SHOW MORE button displays all tag elements within selected photo. These can be auto generated or inputted by the user." />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/settingsTextStyle"
+                android:layout_marginTop="25dp"
+                android:text="Q: How do I create a person?" />
+
+            <TextView
+                style="@style/settingsTextStyle"
+                android:text="  A: Navigate to the 'People' album, then press the ADD button. After inputting the persons name select all of that persons face, each face selected will be highlighted in green. Then when your finished select the check mark to complete the process. If you wish to add more faces to a person, select their name from the top, this will highlight their name, now continue to select faces until you are finished." />
+
+
+            <TextView
+                style="@style/settingsTextStyle"
+                android:layout_marginTop="25dp"
+                android:text="Q: How do I search for an image?" />
+
+            <TextView
+                style="@style/settingsTextStyle"
+                android:text="  A: At the top of the screen their will be a search bar, you can search for people and tags. An example would be: 'dog' and all photos with dogs will appear." />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:orientation="horizontal"
+                android:paddingTop="50dp">
+
+                <Button
+                    android:id="@+id/applyDialogButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/primary"
+                    android:gravity="start"
+                    android:text="Apply"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/cancelDialogButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/primary"
+                    android:gravity="end"
+                    android:text="Cancel"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

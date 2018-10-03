@@ -4,51 +4,74 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.traviswhipple.seniorproject"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // TESTING THIS
+        multiDexEnabled = true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
         // ADDED FOR CLOUD VISION
         buildTypes.each {
             it.buildConfigField 'String', 'API_KEY', '"AIzaSyB53Zn1hsdqcrzRopzrVWXow82QSCr5m1c"'
         }
     }
 
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+
+    // Checking if this fixes "More than one file was found with OS independent path 'META-INF/DEPENDENCIES'
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        pickFirst 'META-INF/LICENSE.txt'
+        pickFirst 'META-INF/NOTICE.txt'
+        pickFirst 'META-INF/INDEX.LIST'
+    }
 }
+
+//it.buildConfigField 'String', 'API_KEY', '"AIzaSyB53Zn1hsdqcrzRopzrVWXow82QSCr5m1c"'
+//Old key: bd9883a893e706fa664be5e9877ea42088de55a9
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.0.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // For dynamic photo alignment.
-    compile 'com.android.support:appcompat-v7:26.0.1'
-    compile 'com.android.support:cardview-v7:26.0.1'
-    compile 'com.android.support:recyclerview-v7:26.0.1'
+    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.android.support:cardview-v7:26.0.1'
+    implementation 'com.android.support:recyclerview-v7:26.0.1'
 
     //HERE
     //implementation 'com.github.bumptech.glide:glide:4.6.1'
     //annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 
     // Glide components.
-    compile 'com.github.bumptech.glide:glide:3.8.0'
-    compile 'com.android.support:support-v4:26.0.1'
+    implementation 'com.github.bumptech.glide:glide:3.8.0'
+    implementation 'com.android.support:support-v4:26.0.1'
     //compile 'com.android.support:support-v4:26.0.0'
-
 
     // TensorFlow components.
     //compile 'org.tensorflow:tensorflow-android:+'
@@ -56,11 +79,25 @@ dependencies {
     // Google cloud vision component. - Used for image classification.
     // Up to 1000 request per month, and 5gb of cloud storage.
     // More info: https://cloud.google.com/vision/docs
-    // compile 'com.google.cloud:google-cloud-vision:1.35.0'
+    //compile 'com.google.cloud:google-cloud-vision:1.35.0'
+    compile 'com.google.cloud:google-cloud-vision:1.35.0'
 
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+
     compile 'com.google.api-client:google-api-client-android:1.23.0' exclude module: 'httpclient'
     compile 'com.google.http-client:google-http-client-gson:1.23.0' exclude module: 'httpclient'
     compile 'com.google.apis:google-api-services-vision:v1-rev369-1.23.0'
+
+    // For google cloud vision
+    //implementation 'com.google.cloud:google-cloud-vision:1.40.0'
+
+    //compile fileTree(include: ['*.jar'], dir: 'libs')
+//    testCompile 'junit:junit:4.12'
+//    compile 'com.google.api-client:google-api-client-android:1.23.0' exclude module: 'httpclient'
+//    compile 'com.google.http-client:google-http-client-gson:1.23.0' exclude module: 'httpclient'
+//    compile 'com.google.apis:google-api-services-vision:v1-rev369-1.23.0'
+
+    //androidTestCompile 'com.google.code.findbugs:jsr305:3.0.1'
+
+    // For face detection
+    implementation 'com.google.android.gms:play-services-vision:11.4.0'
 }

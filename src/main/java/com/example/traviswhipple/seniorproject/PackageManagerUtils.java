@@ -14,6 +14,16 @@ import com.google.common.io.BaseEncoding;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/*
+    Code below provided from Google Cloud Vision:
+    https://github.com/GoogleCloudPlatform/cloud-vision/blob/master/android/CloudVision/app/src/main/java/com/google/sample/cloudvision/PackageManagerUtils.java
+
+    There is no license or distribution agreement associated with this code, so I have included
+    it in my project. Code has not been modified. All credit goes to Google for the following
+    class.
+
+ */
+
 /**
  * Provides utility logic for getting the app's SHA1 signature. Used with restricted API keys.
  *

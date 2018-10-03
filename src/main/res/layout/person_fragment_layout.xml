@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/peopleTextView"
+            style="@style/textStyle"
+            android:fontFamily="sans-serif"
+            android:text="People" />
+
+        <ImageButton
+            android:contentDescription="Add Person"
+            android:id="@+id/addPersonButton"
+            style="@style/RoundButton"
+            android:layout_gravity="start"
+            android:layout_toEndOf="@+id/peopleTextView"
+            android:backgroundTint="@color/accent"
+            android:src="@drawable/add_image"/>
+
+        <ImageButton
+            android:contentDescription="Remove Person"
+            android:id="@+id/removePersonButton"
+            style="@style/RoundButton"
+            android:layout_toEndOf="@+id/addPersonButton"
+            android:backgroundTint="@color/accent"
+            android:src="@drawable/remove_image" />
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/removePersonButton"
+            android:layout_toStartOf="@+id/submit">
+
+            <LinearLayout
+                android:id="@+id/peopleLinearLayout"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <ImageButton
+            android:contentDescription="Submit Changes"
+            android:id="@+id/submit"
+            style="@style/RoundButton"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/colorSubmit"
+            android:src="@drawable/submit_image" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </GridLayout>
+
+    </ScrollView>
+
+</LinearLayout>

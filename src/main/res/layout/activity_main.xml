@@ -1,52 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
+    android:id="@+id/mainLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.traviswhipple.seniorproject.MainActivity">
 
 
     <LinearLayout
         android:id="@+id/searchBarLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
+        <ImageButton
+            style="@style/RoundButton"
+            android:id="@+id/createPhotoLibraryFragment"
+            android:layout_gravity="start"
+            android:backgroundTint="@color/accent"
+            android:src="@drawable/folders_image"
+            android:onClick="CreateImageLibraryFragment"
+            android:layout_marginEnd="10dp"/>
+
         <SearchView
+            android:layout_weight="1"
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search" />
+            android:layout_gravity="end"
+            android:hint="Search for photo"/>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_below="@+id/searchBarLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorAmbient"
-        android:baselineAligned="false">
-
-
-        <GridView
-            android:layout_weight="1"
-            android:id="@+id/gridView"
+        <LinearLayout
+            android:layout_weight="2"
+            android:gravity="end"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:columnWidth="90dp"
-            android:numColumns="auto_fit"
-            android:verticalSpacing="10dp"
-            android:horizontalSpacing="10dp"
-            android:stretchMode="columnWidth"
-            android:gravity="center"/>
+            android:orientation="horizontal">
 
+
+            <ImageButton
+                android:layout_marginStart="5dp"
+                style="@style/RoundButton"
+                android:id="@+id/cameraButton"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/accent"
+                android:onClick="CameraButtonPressed"
+                android:src="@drawable/camera_image"
+                android:visibility="invisible"/>
+
+            <ImageButton
+                android:layout_marginStart="5dp"
+                style="@style/RoundButton"
+                android:id="@+id/helpButton"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/primary"
+                android:onClick="HelpButtonPressed"
+                android:src="@drawable/help_image"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/similarImagesFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/imageLibraryFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/peopleFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </FrameLayout>
+
+    <View
+        android:id="@+id/fadeBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layerType="hardware"
+        android:alpha="1"
+        android:visibility="gone"
+        android:background="@color/ambient"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:id="@+id/similarImageLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <GridView
+                android:id="@+id/gridView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="5"
+                android:verticalSpacing="1dp"
+                android:horizontalSpacing="1dp"
+                android:stretchMode="columnWidth"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
 
-
-
-</RelativeLayout>
+</LinearLayout>

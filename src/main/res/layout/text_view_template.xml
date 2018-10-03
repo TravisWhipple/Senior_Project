@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--style="@style/textStyle"-->
+<!--android:textColor="?attr/textColor"-->
+
+<TextView
+    style="@style/textStyle"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

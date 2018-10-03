@@ -8,12 +8,21 @@
 
     <color name="colorPrimaryDark">#333333</color>
 
-    <color name="colorPrimary">#FE5F00</color>
-    <color name="colorAccent">#F6AE2D</color>
-    <color name="colorAmbientLight">#33658A</color>
-    <color name="colorAmbient">#1d2d38</color>
-    <color name="colorAmbientDark">#253946</color>
 
+    <color name="primary">#F18F01</color>
+    <color name="accent">#0CBABA</color>
+    <color name="accentNegative">#E53809</color>
+    <color name="ambient">#1A1423</color>
+    <color name="ambientLight">#4C6085</color>
+    <color name="ambientDark">#000501</color>
+    <color name="textColor">@color/black</color>
+
+    <color name="colorSubmit">#3BB273</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+
+    <color name="blackTransparent">#FF000000</color>
 
     <!--COLOR SCHEME ONE-->
     <color name="lightBlue">#33658A</color>

@@ -1,11 +1,69 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="LightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/ambient</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:tint">@color/black</item>
+        <item name="textColor">@color/white</item>
+    </style>
+
+    <!--Dark application theme-->
+    <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/ambient</item>
+        <item name="colorPrimaryDark">@color/ambient</item>
+        <item name="colorAccent">@color/ambient</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:tint">@color/white</item>
+        <item name="textColor">@color/white</item>
+
+    </style>
+
+    <!--Style attributes for a rounded button-->
+    <style name="RoundButton">
+        <item name="android:background">@drawable/roundcorner_btn</item>
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dip</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:paddingLeft">5dp</item>
+    </style>
+
+    <!--Style attributes for creating a text view dynamically-->
+    <style name="textStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:layout_gravity">center</item>
+
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+
+        <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!--Style attributes for text views within the settings menu-->
+    <style name="settingsTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
+        <item name="android:layout_gravity">center</item>
+
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!--Background color for all layouts, this matches the current theme selected-->
+    <style name="layoutBackgroundStyle">
+        <item name="android:backgroundTint">@color/ambient</item>
     </style>
 
 </resources>

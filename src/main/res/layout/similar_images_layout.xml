@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/mainLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ambient">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/tagFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+            </FrameLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/selectedImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
+
+
+                <LinearLayout
+                    android:id="@+id/actionButtonsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    android:gravity="start">
+
+
+                    <ImageButton
+                        android:id="@+id/similarImagesRemoveFragment"
+                        style="@style/RoundButton"
+                        android:layout_gravity="end"
+                        android:backgroundTint="@color/accentNegative"
+                        android:src="@drawable/exit_image"
+                        android:onClick="RemoveFragment" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="end">
+
+
+
+                        <ImageButton
+                            android:id="@+id/analyzeButton"
+                            style="@style/RoundButton"
+                            android:layout_gravity="end"
+                            android:backgroundTint="@color/primary"
+                            android:src="@drawable/compute_image"
+                            android:onClick="AnalyzePhotoButtonSelected" />
+
+                        <ImageButton
+                            android:id="@+id/viewTagsButton"
+                            style="@style/RoundButton"
+                            android:layout_gravity="end"
+                            android:backgroundTint="@color/primary"
+                            android:src="@drawable/settings_image"
+                            android:onClick="SimilarImagesActionButton" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <GridLayout
+                android:orientation="horizontal"
+                android:id="@+id/mainGridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="6">
+
+            </GridLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
