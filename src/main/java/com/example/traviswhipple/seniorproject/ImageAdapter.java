@@ -183,10 +183,6 @@ public class ImageAdapter extends BaseAdapter {
     @Override
     public View getView(int a_position, View a_convertView, ViewGroup a_parent) {
 
-        /* Size of image to be loaded. 200x200 allows for smother loading while
-        not compromising image detail.
-         */
-
         int viewSize = m_displayWidth / 6;
         int padding = 1;
 
