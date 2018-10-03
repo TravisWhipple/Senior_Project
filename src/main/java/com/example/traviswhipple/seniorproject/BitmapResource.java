@@ -222,8 +222,7 @@ public class BitmapResource {
         return Bitmap.createScaledBitmap(bitmap, scaledWidth, scaledHeight, false);
     }
     /* GetScaledBitmap(String a_imagePath, int a_MaxDimension) */
-
-
 }
+/* class BitmapResource */
 
 

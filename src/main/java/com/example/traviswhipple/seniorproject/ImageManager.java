@@ -1535,4 +1535,6 @@ public class ImageManager {
             }
         }
     }
+    /* class FaceDetectionThread extends Thread */
 }
+/* class ImageManager */

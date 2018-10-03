@@ -236,3 +236,4 @@ public class FaceBoundaries{
     }
     /* GetSerializedString(String a_delimiter) */
 }
+/* class FaceBoundaries */

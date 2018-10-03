@@ -806,3 +806,4 @@ public class Serializer {
         return Environment.MEDIA_MOUNTED.equals(state);
     }
 }
+/* class Serializer */

@@ -348,5 +348,5 @@ public class TagFragment extends Fragment {
         alertDialog.show();
     }
     /* void AddTag(View a_view) */
-
 }
+/* class TagFragment extends Fragment */
